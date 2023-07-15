@@ -1,0 +1,83 @@
+#!/bin/bash
+
+for i in 1 2 3 4 5
+do
+echo $i
+done
+
+
+#while
+
+echo -e "Please provide one value: \c"
+read -r c
+i=1
+while [ $i -le 10 ]
+do
+b=`expr $c \* $i`
+echo "$c * $i = $b"
+i=`expr $i + 1`
+done
+
+
+#for
+for server in `cat /scripts/servers`
+do
+ping -c 1 $server > /tmp/ping
+valid=`echo $?`
+if [ $valid -eq 0 ]; then
+echo "$server is up"
+else
+echo "$server is Down"
+fi
+done
+
+#if-elif-if
+echo -e "Please Enter a Value: \c"
+read -r a
+echo -e "Please Enter b Value: \c"
+read -r b
+echo -e "Please Enter c Value: \c"
+read -r c
+echo -e "Please Enter d Value: \c"
+read -r d
+
+if [ $a -gt $b -a $a -gt $c -a $a -gt $d ]; then
+echo "$a a is big"
+elif [ $b -gt $c -a $b -gt $d ]; then
+echo "$b b is big"
+elif [ $c -gt $d ]; then
+echo "$c c is big"
+else
+echo "$d d is big"
+fi
+
+
+#if-else
+echo -e "Enter any value: \c"
+read -r a
+echo -e "Enter any value: \c"
+read -r b
+
+if [ $a -gt $b ]; then
+echo "$a is greater than $b"
+else
+echo "$b is greater than $a"
+fi
+
+
+#if
+echo -e "Please provide Value below ten: \c"
+read -r value
+
+if [ $value -le 10 ]
+then
+echo "You provided value is $value"
+touch /tmp/test{1..100}.txt
+echo "Script completed successfully"
+fi
+
+
+
+
+
+# END #
